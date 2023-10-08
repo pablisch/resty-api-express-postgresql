@@ -8,6 +8,17 @@ const getStudents = (req, res) => {
   });
 };
 
+const getStudentById = (req, res) => {
+  const id = parseInt(req.params.id);
+
+  pool.query(queries.getStudentById, [id], (error, results) => {
+    console.log(id)
+    if (error) throw error;
+    res.status(200).json(results.rows);
+  })
+}
+
 module.exports = {
   getStudents,
+  getStudentById
 };
